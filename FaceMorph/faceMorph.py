@@ -3,6 +3,7 @@
 import numpy as np
 import cv2
 import sys
+import imutils
 
 # Read points from text file
 def readPoints(path) :
@@ -69,13 +70,15 @@ def morphTriangle(img1, img2, img, t1, t2, t, alpha) :
 
 if __name__ == '__main__' :
 
-    filename1 = 'donald_trump.jpg'
-    filename2 = 'hillary_clinton.jpg'
-    alpha = 0.7
+    filename1 = 'rooney.jpg'
+    filename2 = 'beckham.jpg'
+    alpha = 0.5
     
     # Read images
     img1 = cv2.imread(filename1)
+    img1 = imutils.resize(img1, width=500)
     img2 = cv2.imread(filename2)
+    img2 = imutils.resize(img2, width=500)
     
     # Convert Mat to float data type
     img1 = np.float32(img1)
@@ -96,10 +99,8 @@ if __name__ == '__main__' :
     # Allocate space for final output
     imgMorph = np.zeros(img1.shape, dtype = img1.dtype)
 
-    print(points[0])
-
     # Read triangles from tri.txt
-    with open("tri.txt") as file :
+    with open("rooney_tri.txt") as file :
         for line in file :
             x,y,z = line.split()
             
