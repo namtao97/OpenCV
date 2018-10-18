@@ -24,9 +24,9 @@ predictor = dlib.shape_predictor(args["shape_predictor"])
 
 # load the input image, resize it, and convert it to grayscale
 image = cv2.imread(args["image"])
-image = imutils.resize(image, width=500)
-image_width = 500
-image_hight = image.shape[0]
+# image = imutils.resize(image, width=500)
+# image_width = 500
+# image_hight = image.shape[0]
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # detect faces in the grayscale image
@@ -54,14 +54,14 @@ for (i, rect) in enumerate(rects):
 
 	# print landmark coordinates to file, prepare for delaunay_triangulation algorithm
 	out = open("temp.txt", "w")
-	out.write(str(0) + " " + str(0) + "\n")
-	out.write(str(0) + " " + str(image_hight - 1) + "\n")
-	out.write(str(image_width - 1) + " " + str(0) + "\n")
-	out.write(str(image_width - 1) + " " + str(image_hight - 1) + "\n")
+	# out.write(str(0) + " " + str(0) + "\n")
+	# out.write(str(0) + " " + str(image_hight - 1) + "\n")
+	# out.write(str(image_width - 1) + " " + str(0) + "\n")
+	# out.write(str(image_width - 1) + " " + str(image_hight - 1) + "\n")
 
 	for (x, y) in shape:
 		out.write(str(x) + " " + str(y) + "\n")
-		cv2.circle(image, (x, y), 1, (0, 0, 255), -1)
+	# 	cv2.circle(image, (x, y), 1, (0, 0, 255), -1)
 
 # show the output image with the face detections + facial landmarks
 cv2.imshow("Output", image)
